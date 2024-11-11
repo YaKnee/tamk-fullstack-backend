@@ -4,7 +4,7 @@ GET http://localhost:6969/movies
 ###
 
 # Get a movie by id that is not valid -> 404
-GET http://localhost:6969/movies/3
+GET http://localhost:6969/movies/100
 
 ###
 
@@ -21,7 +21,7 @@ Content-Type: application/json
 ###
 
 # Delete a movie not there -> 404
-DELETE http://localhost:6969/movies/5
+DELETE http://localhost:6969/movies/378
 
 ###
 
