@@ -1,0 +1,31 @@
+[
+  {
+    "method": "GET",
+    "url": "http://localhost:6969/movies",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "expected_status": 200
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:6969/movies/1",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "expected_status": 200
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:6969/movies",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "The Dark Knight",
+      "director": "Christopher Nolan",
+      "year": 2008
+    },
+    "expected_status": 201
+  }
+]

@@ -1,0 +1,48 @@
+# Get all movies -> 200
+GET http://localhost:6969/movies
+
+###
+
+# Get a movie by id that is not valid -> 404
+GET http://localhost:6969/movies/3
+
+###
+
+# Add a new movie -> 201
+POST http://localhost:6969/movies
+Content-Type: application/json
+
+{
+  "title": "Mad Max: Fury Road",
+  "director": "Rupert Miller",
+  "year": 2015
+}
+
+###
+
+# Delete a movie not there -> 404
+DELETE http://localhost:6969/movies/5
+
+###
+
+# Update a movie
+PUT http://localhost:6969/movies/2
+Content-Type: application/json
+
+{
+  "title": "Oppenheimer",
+  "director": "Christopher Nolan",
+  "year": 2023
+}
+
+###
+
+# Test undefined route -> 404
+GET http://localhost:6969/directors
+
+###
+
+# Test query
+GET http://localhost:6969/movies?director=Christopher Nolan
+
+###

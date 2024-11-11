@@ -1,6 +1,9 @@
 # TAMK Fullstack Web Development- Backend
 Place to store weekly updates to our backend server.
 
+### Installation
+Go to the directory where you want to store this repository, then use: `git clone https://github.com/YaKnee/tamk-fullstack-backend.git`. Next, go into this new directory with `cd tamk-fullstack-backend` and install the dependency packages by using `npm install`. After installation is complete, use `npm start` which should start the project with nodemon.
+
 ### Week 1
 First implementation of CRUD application with Node Express.
 
