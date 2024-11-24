@@ -43,6 +43,6 @@ GET http://localhost:6969/directors
 ###
 
 # Test query
-GET http://localhost:6969/movies?director=hermin
+GET http://localhost:6969/movies?director=Chris
 
 ###
