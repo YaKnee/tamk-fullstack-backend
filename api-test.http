@@ -4,7 +4,7 @@ GET http://localhost:6969/movies
 ###
 
 # Get a movie by id that is not valid -> 404
-GET http://localhost:6969/movies/3
+GET http://localhost:6969/movies/4
 
 ###
 
@@ -43,6 +43,6 @@ GET http://localhost:6969/directors
 ###
 
 # Test query
-GET http://localhost:6969/movies?director=Christopher Nolan
+GET http://localhost:6969/movies?director=hermin
 
 ###
