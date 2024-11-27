@@ -6,11 +6,12 @@ import {
   updateMovie,
   deleteMovie
 } from "../controllers/movieController.js";
+import { validateMovie } from "../middlewares/validateMovie.js";
 
 export const router = express.Router();
 
 router.get("/", getAllMovies);
 router.get("/:id", getMovieById);
-router.post("/", postNewMovie);
-router.put("/:id", updateMovie);
+router.post("/", validateMovie, postNewMovie);
+router.put("/:id", validateMovie, updateMovie);
 router.delete("/:id", deleteMovie)

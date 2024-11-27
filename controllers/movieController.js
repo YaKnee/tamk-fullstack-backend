@@ -1,17 +1,5 @@
 import { Movie } from "../models/movieModel.js";
 
-// Function to validate movie data
-function validateMovie(movie) {
-    const { title, director, year } = movie;
-    if (!title || !director || !year) {
-        return "Required fields: title, director, year.";
-    }
-    if (isNaN(year) || year < 1888 || year > (new Date().getFullYear() + 10)) {
-        return "Year must be a number after 1888 and before 10 years in future.";
-    }
-    return null; // Validation passed
-}
-
 // Function to retrieve all movies
 export const getAllMovies = async (req, res) => {
   try {
@@ -66,12 +54,7 @@ export const getMovieById = async (req, res) => {
 };
 
 // Function to create a new movie
-export const postNewMovie = async (req, res) => {
-    const validationError = validateMovie(req.body);
-    if (validationError) {
-        return res.status(400).send(validationError);
-    }
-
+export const postNewMovie = async (req, res) => { // Already validated
     const newMovieInfo = req.body;
 
     try {
@@ -87,11 +70,7 @@ export const postNewMovie = async (req, res) => {
 };
 
 // Function to update an existing movies
-export const updateMovie = async (req, res) => {
-    const validationError = validateMovie(req.body);
-    if (validationError) {
-        return res.status(400).send(validationError);
-    }
+export const updateMovie = async (req, res) => { // Already validated
 
     const updatedMovie = req.body;
 

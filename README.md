@@ -36,6 +36,6 @@ Refactor local backend to utilise a MongoDB cluster provided by AWS.
 ### Week 4
 
 - Modularize the project
-- 
+- Implement validation with Joi
 
 ### Week 5
