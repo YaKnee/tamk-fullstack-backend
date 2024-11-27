@@ -35,4 +35,7 @@ Refactor local backend to utilise a MongoDB cluster provided by AWS.
 
 ### Week 4
 
+- Modularize the project
+- 
+
 ### Week 5
