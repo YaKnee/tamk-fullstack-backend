@@ -1,0 +1,126 @@
+@PORT = 6969
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDgzOWRjYWI2OWJmYjU1ZWZmMjE4NCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMjc4NjczNiwiZXhwIjoxNzMyNzkwMzM2fQ.Cb8jOpB1ZzwprzgyqbssT1Efh08pnP8iGmlCyMkkyvo
+
+### Get all movies -> 200
+GET http://localhost:{{PORT}}/movies
+
+### Get movie by ID -> 200
+GET http://localhost:{{PORT}}/movies/3
+
+### Attempt to get movie with Invalid ID -> 404
+GET http://localhost:{{PORT}}/movies/200
+
+### Add new movie -> 201
+POST http://localhost:{{PORT}}/movies
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Inception",
+  "director": "Christopher Nolan",
+  "year": 2010
+}
+
+### Attempt to add movie with invalid fields -> 400
+POST http://localhost:{{PORT}}/movies
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Mad Max: Fury Road",
+  "director": "Rupert Miller",
+  "year": 1015
+}
+
+### Attempt to add movie with missing fields -> 400
+POST http://localhost:{{PORT}}/movies
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Super New Real Movie",
+}
+
+### Delete movie -> 204
+DELETE http://localhost:{{PORT}}/movies/1
+Authorization: Bearer {{token}}
+
+### Attempt to delete non-existant movie -> 404
+DELETE http://localhost:{{PORT}}/movies/2000
+Authorization: Bearer {{token}}
+
+### Update a movie -> 200
+PUT http://localhost:{{PORT}}/movies/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Oppenheimer",
+  "director": "Christopher Nolan",
+  "year": 2023
+}
+
+### Attempt to update movie with invalid fields -> 400
+PUT http://localhost:{{PORT}}/movies/2
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Oppenheimer",
+  "director": "Christopher Nolan",
+  "year": 3023
+}
+
+### Attempt to update non-existant movie -> 404
+PUT http://localhost:{{PORT}}/movies/2000
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Oppenheimer",
+  "director": "Christopher Nolan",
+  "year": 2023
+}
+
+### Test undefined route -> 404
+GET http://localhost:{{PORT}}/directors
+
+###
+
+# Test query
+GET http://localhost:{{PORT}}/movies?director=Chris
+
+###
+
+# Login Test - Valid Credentials
+POST http://localhost:{{PORT}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+###
+
+# Login Test - Invalid Username
+POST http://localhost:{{PORT}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "not_a_user",
+  "password": "admin123"
+}
+
+###
+
+# Login Test - Invalid Password
+POST http://localhost:{{PORT}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "wrong_password"
+}
+
+###

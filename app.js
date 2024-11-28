@@ -2,9 +2,12 @@
 import express from 'express';
 import morgan from 'morgan';
 import dotenv from "dotenv";
-import { connectToDatabase } from './config/db.js';
-import { router as movieRoutes } from './routes/movies.js';
+
+// Import routers, schemas, and functions
+import { movieRouter } from './routes/movies.js';
+import { authRouter } from './routes/auth.js';
 import { Movie } from './models/movieModel.js';
+import { connectToDatabase } from './config/db.js';
 
 //Loads environmnetal variable
 dotenv.config();
@@ -13,7 +16,7 @@ dotenv.config();
 const app = express();
 
 // Define the port number the server will listen on
-const PORT = 6969;
+const PORT = process.env.PORT || 3000;
 
 // Use morgan for logging HTTP requests in "dev" format
 app.use(morgan("dev"));
@@ -22,8 +25,8 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 
-app.use("/movies", movieRoutes);
-//app.use("/auth", authRoutes)
+app.use("/movies", movieRouter);
+app.use("/auth", authRouter)
 
 app.get("/", async (req, res) => {
     try {

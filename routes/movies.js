@@ -7,11 +7,13 @@ import {
   deleteMovie
 } from "../controllers/movieController.js";
 import { validateMovie } from "../middlewares/validateMovie.js";
+import { authenticate } from "../middlewares/authenticateUser.js";
 
-export const router = express.Router();
+export const movieRouter = express.Router();
 
-router.get("/", getAllMovies);
-router.get("/:id", getMovieById);
-router.post("/", validateMovie, postNewMovie);
-router.put("/:id", validateMovie, updateMovie);
-router.delete("/:id", deleteMovie)
+movieRouter.get("/", getAllMovies);
+movieRouter.get("/:id", getMovieById);
+//These operations require authentication
+movieRouter.post("/", authenticate, validateMovie, postNewMovie);
+movieRouter.put("/:id", authenticate, validateMovie, updateMovie);
+movieRouter.delete("/:id", authenticate, deleteMovie)

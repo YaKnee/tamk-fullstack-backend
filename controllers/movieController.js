@@ -3,6 +3,9 @@ import { Movie } from "../models/movieModel.js";
 // Function to retrieve all movies
 export const getAllMovies = async (req, res) => {
   try {
+    const test = await Movie.find();
+    if (test.length === 0) return res.status(404).send("No movies in database yet.");
+
     const validQueries = ["title", "director", "year"];
     let filter = {};
 
