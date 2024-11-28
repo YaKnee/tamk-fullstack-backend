@@ -4,6 +4,9 @@ This repository serves as a versioned log of weekly updates and improvements to 
 ## Installation
 *requires own MongoDB server and credentials. Instructions can be found here on how to setup your own: [Getting Started with MongoDB Atlas](https://www.youtube.com/watch?v=bBA9rUdqmgY).
 
+Go to the directory where you want to store this repository, then use: `git clone https://github.com/YaKnee/tamk-fullstack-backend.git`.
+Next, go into this new directory with `cd tamk-fullstack-backend` and install the dependency packages by using `npm install`. 
+
 Then create a .env file to the project folder with:
 - Server credentials, for example: `MONGODB_URI = mongodb+srv://<username>:<password>@<cluster_name>.mongodb.net/<database_name>`,
 - Json web token secret, for example: `JWT_SECRET=<secret_key>`,
@@ -11,7 +14,7 @@ Then create a .env file to the project folder with:
 
 __Replace values between <> with your actual values.__
 
-Go to the directory where you want to store this repository, then use: `git clone https://github.com/YaKnee/tamk-fullstack-backend.git`. Next, go into this new directory with `cd tamk-fullstack-backend` and install the dependency packages by using `npm install`. After installation is complete, use `npm start` which should start the project with nodemon.
+Finally, use `npm start` which should start the project with nodemon.
 
 ## Weekly Updates
 
