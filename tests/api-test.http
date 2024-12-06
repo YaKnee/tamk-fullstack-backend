@@ -1,20 +1,22 @@
-@PORT = 6969
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTM0MmU4MGFkNTM1NjBlZDVmZGEyOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzUwOTg4MSwiZXhwIjoxNzMzNTEzNDgxfQ.-NeRYAXUSjHf-Z9VG_dItWlOIVUlVRYgaL_SdH9TRqc
+@PORT = 7000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTM0MmU4MGFkNTM1NjBlZDVmZGEyOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzUxOTI2MywiZXhwIjoxNzMzNTIyODYzfQ.ALKdmT9c5_blTyKiQynLptqv-g_qF4g6MiDW2oOm29k
+
+@connection = https
 
 ### Get all movies -> 200
-GET http://localhost:{{PORT}}/movies
+GET {{connection}}://localhost:{{PORT}}/movies
 Authorization: Bearer {{token}}
 
 ### Get movie by ID -> 200
-GET http://localhost:{{PORT}}/movies/3
+GET {{connection}}://localhost:{{PORT}}/movies/3
 Authorization: Bearer {{token}}
 
 ### Attempt to get movie with Invalid ID -> 404
-GET http://localhost:{{PORT}}/movies/200
+GET {{connection}}://localhost:{{PORT}}/movies/200
 Authorization: Bearer {{token}}
 
 ### Add new movie -> 201
-POST http://localhost:{{PORT}}/movies
+POST {{connection}}://localhost:{{PORT}}/movies
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -25,7 +27,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Attempt to add movie with invalid fields -> 400
-POST http://localhost:{{PORT}}/movies
+POST {{connection}}://localhost:{{PORT}}/movies
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -36,7 +38,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Attempt to add movie with missing fields -> 400
-POST http://localhost:{{PORT}}/movies
+POST {{connection}}://localhost:{{PORT}}/movies
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -45,15 +47,15 @@ Authorization: Bearer {{token}}
 }
 
 ### Delete movie -> 204
-DELETE http://localhost:{{PORT}}/movies/5
+DELETE {{connection}}://localhost:{{PORT}}/movies/5
 Authorization: Bearer {{token}}
 
 ### Attempt to delete non-existant movie -> 404
-DELETE http://localhost:{{PORT}}/movies/2000
+DELETE {{connection}}://localhost:{{PORT}}/movies/2000
 Authorization: Bearer {{token}}
 
 ### Update a movie -> 200
-PUT http://localhost:{{PORT}}/movies/2
+PUT {{connection}}://localhost:{{PORT}}/movies/2
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -64,7 +66,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Attempt to update movie with invalid fields -> 400
-PUT http://localhost:{{PORT}}/movies/2
+PUT {{connection}}://localhost:{{PORT}}/movies/2
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -75,7 +77,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Attempt to update non-existant movie -> 404
-PUT http://localhost:{{PORT}}/movies/2000
+PUT {{connection}}://localhost:{{PORT}}/movies/2000
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -86,15 +88,15 @@ Authorization: Bearer {{token}}
 }
 
 ### Test undefined route -> 404
-GET http://localhost:{{PORT}}/directors
+GET {{connection}}://localhost:{{PORT}}/directors
 Authorization: Bearer {{token}}
 
 ### Test query
-GET http://localhost:{{PORT}}/movies?director=Chris
+GET {{connection}}://localhost:{{PORT}}/movies?director=Chris
 Authorization: Bearer {{token}}
 
 ### Login Test - Valid Credentials [admin]
-POST http://localhost:{{PORT}}/auth/login
+POST {{connection}}://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
 {
@@ -103,7 +105,7 @@ Content-Type: application/json
 }
 
 ### Login Test - Valid Credentials [regular]
-POST http://localhost:{{PORT}}/auth/login
+POST {{connection}}s://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
 {
@@ -112,7 +114,7 @@ Content-Type: application/json
 }
 
 ### Login Test - Invalid Username
-POST http://localhost:{{PORT}}/auth/login
+POST {{connection}}://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
 {
@@ -121,7 +123,7 @@ Content-Type: application/json
 }
 
 ### Login Test - Invalid Password
-POST http://localhost:{{PORT}}/auth/login
+POST {{connection}}://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
 {
@@ -130,7 +132,7 @@ Content-Type: application/json
 }
 
 ### Register Test
-POST http://localhost:{{PORT}}/auth/register
+POST {{connection}}://localhost:{{PORT}}/auth/register
 Content-Type: application/json
 
 {

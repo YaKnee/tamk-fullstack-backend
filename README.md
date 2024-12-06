@@ -55,10 +55,15 @@ Refactor local backend to utilise a MongoDB cluster provided by AWS.
 
 ### Week 5
 
+- Create routes for registering users and logging in
+- Enable real-time communication with WebSockets
+- Enhance security with HTTPS (selfsigned) and authentication for each route
+
 ## Libraries
 
 Full list of libaries used for this project are:
 - [axios](https://axios-http.com/docs/intro)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
 - [dotenv](https://www.dotenv.org/docs/)
 - [express](https://expressjs.com/en/4x/api.html)
 - [joi](https://joi.dev/api/?v=17.13.3)
@@ -67,3 +72,5 @@ Full list of libaries used for this project are:
 - [mongoose](https://mongoosejs.com/docs/index.html)
 - [morgan](https://github.com/expressjs/morgan#readme)
 - [nodemon](https://github.com/remy/nodemon)
+- [selfsigned](https://www.npmjs.com/package/selfsigned)
+- [websocket](https://www.npmjs.com/package/ws)
