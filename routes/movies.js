@@ -11,9 +11,10 @@ import { authenticate } from "../middlewares/authenticateUser.js";
 
 export const movieRouter = express.Router();
 
-movieRouter.get("/", getAllMovies);
-movieRouter.get("/:id", getMovieById);
-//These operations require authentication
-movieRouter.post("/", authenticate, validateMovie, postNewMovie);
-movieRouter.put("/:id", authenticate, validateMovie, updateMovie);
-movieRouter.delete("/:id", authenticate, deleteMovie)
+// Viewing movies requires to be an authenticated user
+movieRouter.get("/", authenticate(["admin", "regular"]),getAllMovies);
+movieRouter.get("/:id", authenticate(["admin", "regular"]), getMovieById);
+// Posting/Editing/Deleting requires admin privileges
+movieRouter.post("/", authenticate(["admin"]), validateMovie, postNewMovie);
+movieRouter.put("/:id",  authenticate(["admin"]), validateMovie, updateMovie);
+movieRouter.delete("/:id",  authenticate(["admin"]), deleteMovie)

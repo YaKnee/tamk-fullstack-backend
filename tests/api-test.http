@@ -1,14 +1,17 @@
 @PORT = 6969
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDgzOWRjYWI2OWJmYjU1ZWZmMjE4NCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMjc4NjczNiwiZXhwIjoxNzMyNzkwMzM2fQ.Cb8jOpB1ZzwprzgyqbssT1Efh08pnP8iGmlCyMkkyvo
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NTM0MmU4MGFkNTM1NjBlZDVmZGEyOSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczMzUwOTg4MSwiZXhwIjoxNzMzNTEzNDgxfQ.-NeRYAXUSjHf-Z9VG_dItWlOIVUlVRYgaL_SdH9TRqc
 
 ### Get all movies -> 200
 GET http://localhost:{{PORT}}/movies
+Authorization: Bearer {{token}}
 
 ### Get movie by ID -> 200
 GET http://localhost:{{PORT}}/movies/3
+Authorization: Bearer {{token}}
 
 ### Attempt to get movie with Invalid ID -> 404
 GET http://localhost:{{PORT}}/movies/200
+Authorization: Bearer {{token}}
 
 ### Add new movie -> 201
 POST http://localhost:{{PORT}}/movies
@@ -16,9 +19,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "title": "Inception",
+  "title": "Tenet",
   "director": "Christopher Nolan",
-  "year": 2010
+  "year": 2020
 }
 
 ### Attempt to add movie with invalid fields -> 400
@@ -42,7 +45,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Delete movie -> 204
-DELETE http://localhost:{{PORT}}/movies/1
+DELETE http://localhost:{{PORT}}/movies/5
 Authorization: Bearer {{token}}
 
 ### Attempt to delete non-existant movie -> 404
@@ -84,15 +87,13 @@ Authorization: Bearer {{token}}
 
 ### Test undefined route -> 404
 GET http://localhost:{{PORT}}/directors
+Authorization: Bearer {{token}}
 
-###
-
-# Test query
+### Test query
 GET http://localhost:{{PORT}}/movies?director=Chris
+Authorization: Bearer {{token}}
 
-###
-
-# Login Test - Valid Credentials
+### Login Test - Valid Credentials [admin]
 POST http://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
@@ -101,9 +102,16 @@ Content-Type: application/json
   "password": "admin123"
 }
 
-###
+### Login Test - Valid Credentials [regular]
+POST http://localhost:{{PORT}}/auth/login
+Content-Type: application/json
 
-# Login Test - Invalid Username
+{
+  "username": "user",
+  "password": "password"
+}
+
+### Login Test - Invalid Username
 POST http://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
@@ -112,9 +120,7 @@ Content-Type: application/json
   "password": "admin123"
 }
 
-###
-
-# Login Test - Invalid Password
+### Login Test - Invalid Password
 POST http://localhost:{{PORT}}/auth/login
 Content-Type: application/json
 
@@ -123,4 +129,14 @@ Content-Type: application/json
   "password": "wrong_password"
 }
 
-###
+### Register Test
+POST http://localhost:{{PORT}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123",
+  "role": "admin"
+}
+
+### Test WebSocket Conenction

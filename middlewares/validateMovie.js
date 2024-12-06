@@ -7,11 +7,10 @@ const movieValidationSchema = Joi.object({
 });
 
 export const validateMovie = (req, res, next) => {
-    const { error } = movieValidationSchema.validate(req.body);
+    const { error } = movieValidationSchema.validate(req.body, { abortEarly: false });
     if (error) {
         const errorMessage = error.details.map((detail) => detail.message);
         return res.status(400).send({errors: errorMessage})
     }
-
     next();
 };

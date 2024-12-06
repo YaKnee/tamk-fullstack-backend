@@ -48,11 +48,11 @@ export const getMovieById = async (req, res) => {
     try {
         const movie = await Movie.findOne({id: req.params.id});
         if (!movie) {
-            return res.status(404).send("Movie not found.");
+            return res.status(404).send({ error: "Movie not found." });
         }
         res.status(200).send(movie);
     } catch (err) {
-        res.status(500).send("Error retrieving movie.");
+        res.status(500).send({ erro : "Error retrieving movie." });
     }
 };
 
@@ -66,9 +66,9 @@ export const postNewMovie = async (req, res) => { // Already validated
         const newId = lastMovie ? lastMovie.id + 1 : 1;
         const newMovie = new Movie({ ...newMovieInfo, id: newId });
         await newMovie.save();
-        res.status(201).send("Movie added successfully.");
+        res.status(201).send({ message: "Movie added successfully." });
     } catch (err) {
-        res.status(500).send("Error adding movie.");
+        res.status(500).send({ error: "Error adding movie." });
     }
 };
 
@@ -80,11 +80,14 @@ export const updateMovie = async (req, res) => { // Already validated
     try {
         const movie = await Movie.findOneAndUpdate({id: req.params.id}, updatedMovie);
         if (!movie) {
-            return res.status(404).send("Movie not found.");
+            return res.status(404).send({ error: "Movie not found." });
         }
-        res.status(200).send("Movie updated successfully.");
+        res.status(200).send({ 
+          message: "Movie updated successfully.",
+          new_movie_details: movie
+        });
     } catch (err) {
-        res.status(500).send("Error updating movie.");
+        res.status(500).send({ error: "Error updating movie." });
     }
 };
 
@@ -93,10 +96,10 @@ export const deleteMovie = async (req, res) => {
     try {
         const movie = await Movie.findOneAndDelete({id: req.params.id});
         if (!movie) {
-            return res.status(404).send("Movie not found.");
+            return res.status(404).send({ error: "Movie not found." });
         }
-        res.status(204).send("Movie deleted successfully.");
+        res.status(204).send({ message: "Movie deleted successfully." });
     } catch (err) {
-        res.status(500).send("Error deleting movie.")
+        res.status(500).send({ error: "Error deleting movie." })
     }
 };

@@ -1,9 +1,9 @@
 import express from "express";
-// import dotenv from "dotenv";
-import { login } from "../controllers/authController.js";
+import { login, register } from "../controllers/authController.js";
+import { validateCredentials } from "../middlewares/validateCredentials.js";
 
-// dotenv.config();
 
 export const authRouter = express.Router();
 
-authRouter.post("/login", login);
+authRouter.post("/login", validateCredentials, login);
+authRouter.post("/register", validateCredentials, register)
