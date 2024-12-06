@@ -2,12 +2,15 @@
 import express from 'express';
 import morgan from 'morgan';
 import dotenv from "dotenv";
+import http from "http";
 
 // Import routers, schemas, and functions
+import { connectToDatabase } from './config/db.js';
+import { initializeWebSocket } from './wsConnection.js';
 import { movieRouter } from './routes/movies.js';
 import { authRouter } from './routes/auth.js';
 import { Movie } from './models/movieModel.js';
-import { connectToDatabase } from './config/db.js';
+
 
 //Loads environmnetal variable
 dotenv.config();
@@ -17,6 +20,9 @@ const app = express();
 
 // Define the port number the server will listen on
 const PORT = process.env.PORT || 3000;
+
+//Initialize the http server for the webSocket
+const server = http.createServer(app);
 
 // Use morgan for logging HTTP requests in "dev" format
 app.use(morgan("dev"));
@@ -44,11 +50,13 @@ app.get("/", async (req, res) => {
 
 const startServer = async () => {
     await connectToDatabase();
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}`);
     });
 }
 
+// Initialize the webSocket and start the CRUD server
+initializeWebSocket(server);
 startServer();
 
 // Catch-all route to handle undefined routes and return 404
