@@ -4,7 +4,7 @@ This repository serves as a versioned log of weekly updates and improvements to 
 ## Installation
 *requires Node.js and your own MongoDB server and credentials. Instructions can be found here on how to setup your own: [Getting Started with MongoDB Atlas](https://www.youtube.com/watch?v=bBA9rUdqmgY).
 
-Go to the directory where you want to store this repository, then use: `git clone https://github.com/YaKnee/tamk-fullstack-backend.git`.
+Go to the directory where you want to store this repository, then use: `git clone https://github.com/YaKnee/tamk-fullstack-backend.git` or download as a Zip folder and extract there.
 Next, go into this new directory with `cd tamk-fullstack-backend` and install the dependency packages by using `npm install`. 
 
 Then create a __.env__ file to the project folder with:
