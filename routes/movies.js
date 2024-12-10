@@ -15,6 +15,6 @@ export const movieRouter = express.Router();
 movieRouter.get("/", authenticate(["admin", "regular"]),getAllMovies);
 movieRouter.get("/:id", authenticate(["admin", "regular"]), getMovieById);
 // Posting/Editing/Deleting requires admin privileges
-movieRouter.post("/", authenticate(["admin"]), validateMovie, postNewMovie);
-movieRouter.put("/:id",  authenticate(["admin"]), validateMovie, updateMovie);
+movieRouter.post("/", authenticate(["admin"]), validateMovie, postNewMovie); // Validate before create
+movieRouter.put("/:id",  authenticate(["admin"]), validateMovie, updateMovie); // Validate before update
 movieRouter.delete("/:id",  authenticate(["admin"]), deleteMovie)
