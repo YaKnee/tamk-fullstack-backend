@@ -37,9 +37,9 @@ export const getAllMovies = async (req, res) => {
         query: req.query
       });
     }
-    res.status(200).send(movies);
+    return res.status(200).send(movies);
   } catch (err) {
-    res.status(500).send("Error retrieving movies.");
+    return res.status(500).send("Error retrieving movies.");
   }
 };
 
@@ -50,9 +50,9 @@ export const getMovieById = async (req, res) => {
         if (!movie) {
             return res.status(404).send({ error: "Movie not found." });
         }
-        res.status(200).send(movie);
+        return res.status(200).send(movie);
     } catch (err) {
-        res.status(500).send({ erro : "Error retrieving movie." });
+        return res.status(500).send({ error : "Error retrieving movie." });
     }
 };
 
@@ -66,9 +66,9 @@ export const postNewMovie = async (req, res) => { // Already validated
         const newId = lastMovie ? lastMovie.id + 1 : 1;
         const newMovie = new Movie({ ...newMovieInfo, id: newId });
         await newMovie.save();
-        res.status(201).send({ message: "Movie added successfully." });
+        return res.status(201).send({ message: "Movie added successfully." });
     } catch (err) {
-        res.status(500).send({ error: "Error adding movie." });
+        return res.status(500).send({ error: "Error adding movie." });
     }
 };
 
@@ -82,12 +82,12 @@ export const updateMovie = async (req, res) => { // Already validated
         if (!movie) {
             return res.status(404).send({ error: "Movie not found." });
         }
-        res.status(200).send({ 
+        return res.status(200).send({ 
           message: "Movie updated successfully.",
           new_movie_details: movie
         });
     } catch (err) {
-        res.status(500).send({ error: "Error updating movie." });
+        return res.status(500).send({ error: "Error updating movie." });
     }
 };
 
@@ -98,8 +98,8 @@ export const deleteMovie = async (req, res) => {
         if (!movie) {
             return res.status(404).send({ error: "Movie not found." });
         }
-        res.status(204).send({ message: "Movie deleted successfully." });
+        return res.status(204).send({ message: "Movie deleted successfully." });
     } catch (err) {
-        res.status(500).send({ error: "Error deleting movie." })
+        return res.status(500).send({ error: "Error deleting movie." })
     }
 };
